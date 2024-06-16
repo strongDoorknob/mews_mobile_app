@@ -1,4 +1,4 @@
-# pulse
+# MEWS score mobile application
 
 A new Flutter project.
 
