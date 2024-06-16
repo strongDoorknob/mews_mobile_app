@@ -1,279 +1,293 @@
-// ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pulse/intro/authenticate/login.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pulse/intro/authenticate/done.dart';
 import 'package:pulse/themes/color.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<RegisterPage> createState() => _RegisterStepperPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterStepperPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  String _thName = "";
-  String _enName = "";
-  String _citizenId = "";
-  String _email = "";
-  String _password = "";
+  final _formKeyForMail = GlobalKey<FormState>();
+
+  final _thName = TextEditingController();
+  final _enName = TextEditingController();
+  final _citizenId = TextEditingController();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+
+  List<String> validateErr = [];
+
+
+  int _currentStep = 0;
+  bool get isFirstStep => _currentStep == 0;
+  bool get isLastStep => _currentStep == steps().length - 1;
+
+  bool isComplete = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
-      body: Center(
+      resizeToAvoidBottomInset: false,
+      body: isComplete ? const DonePage() : Center(
         child: Container(
-          width: 350,
-          height: 600,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           decoration: BoxDecoration(
             color: secondaryColor,
             borderRadius: BorderRadius.circular(25)
           ),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 75,
-                      width: 75,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(125),
-                        border: Border.all(
-                          color: Colors.white60,
-                          width: 2,
-                        ),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(125),
-                        child: Image.asset(
-                          "assets/images/Logo.jpg",
-                          height: 250,
-                          width: 250,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const FaIcon(FontAwesomeIcons.penToSquare, size: 40,),
+                  const SizedBox(width: 5,),
+                  Text(
+                    "ลงทะเบียน",
+                    style: GoogleFonts.inter(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold
                     ),
-                            
-                    const SizedBox(width: 20,),
-                            
-                    Text(
-                      "ลงทะเบียน",
-                      style: GoogleFonts.inter(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold
-                      ),
-                    )
-                  ],
-                ),
-            
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when focused
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when enabled but not focused
-                          ),
-                          labelText: "ชื่อเต็ม(ภาษาไทย)",
-                          labelStyle: TextStyle(color:Colors.black),
-                        ),
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "กรุณาป้อนชื่อภาษาไทย";
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _thName = value!;
-                        },
-                      ),
-                    ),
-                
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when focused
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when enabled but not focused
-                          ),
-                          labelText: "ชื่อเต็ม(ภาษาอังกฤษ)",
-                          labelStyle: TextStyle(color:Colors.black),
-                        ),
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "กรุณาป้อนชื่อภาษาอังกฤษ";
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _enName = value!;
-                        },
-                      ),
-                    ),
-                
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when focused
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when enabled but not focused
-                          ),
-                          labelText: "เลขประจำตัวประชาชน",
-                          labelStyle: TextStyle(color:Colors.black),
-                        ),
-                        validator: (value) {
-                          if (value==null || value.isEmpty || value.length != 13){
-                            return "กรุณาป้อนเลขบัตรประจำตัวประชาชนให้ถูกต้อง";
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _citizenId = value!;
-                        },
-                      ),
-                    ),
-                
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when focused
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when enabled but not focused
-                          ),
-                          labelText: "อีเมลล์",
-                          labelStyle: TextStyle(color:Colors.black),
-                        ),
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "กรุณาป้อนอีเมลล์";
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _email = value!;
-                        },
-                      ),
-                    ),
-                
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when focused
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black), // Change border color when enabled but not focused
-                          ),
-                          labelText: "รหัสผ่าน",
-                          labelStyle: TextStyle(color:Colors.black),
-                        ),
-                        validator: (value) {
-                          if (value==null || value.isEmpty){
-                            return "กรุณาป้อนรหัสผ่าน";
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _password = value!;
-                        },
-                      ),
-                    ),
-                
-                  ],
-                ),
-            
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FilledButton(
-                      onPressed: (){
-                        _formKey.currentState!.validate();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const LoginPage())
-                        );
-                      }, 
-                      style: FilledButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        backgroundColor: thirdColor,
-                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                        )
-                      ),
-                      child: Text(
-                        "ลงทะเบียน",
-                        style: GoogleFonts.inter(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
-                      )
-                    ),
-            
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                ],
+              ),
+
+              Form(
+                key: _formKey,
+                child: Stepper(
+                  steps: steps(), 
+                  currentStep: _currentStep, 
+                  onStepContinue: (){
+                    if (isLastStep) {
+                      setState(() => isComplete = true);
+                    } else {
+                      setState(() {
+                        _currentStep += 1;
+                      });
+                    }
+                  },
+                  onStepCancel: isFirstStep ? null : () => setState(() => _currentStep -= 1),
+                  onStepTapped: (step) => setState(() => _currentStep = step),
+                  controlsBuilder: (context, details) => Padding(
+                    padding: const EdgeInsets.only(top: 32),
+                    child: Row(
                       children: [
-                        Text(
-                          "หรือ",
-                          style: GoogleFonts.inter(),
+                        Expanded(
+                          child: _currentStep != 1 ?
+                            FilledButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  details.onStepContinue!();
+                                }
+                              },
+                              style: FilledButton.styleFrom(
+                                foregroundColor: Colors.black,
+                                backgroundColor: thirdColor,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                                )
+                              ),
+                              child: Text(
+                                isLastStep ? "ลงทะเบียน" : "ถัดไป",
+                                style: GoogleFonts.inter(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              )
+                            )
+                          :
+                          FilledButton(
+                              onPressed: () {
+                                if (_formKeyForMail.currentState!.validate()) {
+                                  details.onStepContinue!();
+                                }
+                              },
+                              style: FilledButton.styleFrom(
+                                foregroundColor: Colors.black,
+                                backgroundColor: thirdColor,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                                )
+                              ),
+                              child: Text(
+                                "ถัดไป",
+                                style: GoogleFonts.inter(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              )
+                            )
                         ),
-                    
-                        TextButton(
-                          onPressed: (){}, 
-                          style: TextButton.styleFrom(
-                            foregroundColor: secondaryColor
+                        if (!isFirstStep) ... [
+                          const SizedBox(width: 16,),
+                          Expanded(
+                            child: FilledButton(
+                              onPressed: isFirstStep ? null : details.onStepCancel,
+                              style: FilledButton.styleFrom(
+                                foregroundColor: Colors.black,
+                                backgroundColor: thirdColor,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              child: Text(
+                                "กลับ",
+                                style: GoogleFonts.inter(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              )
+                            )
                           ),
-                          child: Text(
-                            "เข้าสู่ระบบ",
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline,
-                              color: Colors.black
-                            ),
-                          ),
-                        ),
+                        ],
                       ],
-                    )
-                  ],
-                )
-              ],
-            ),
+                    ),
+                  ),
+                ),
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "หรือ",
+                    style: GoogleFonts.inter(),
+                  ),
+              
+                  TextButton(
+                    onPressed: (){}, 
+                    style: TextButton.styleFrom(
+                      foregroundColor: secondaryColor
+                    ),
+                    child: Text(
+                      "เข้าสู่ระบบ",
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        color: Colors.black
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
     );
   }
+
+  List<Step> steps() => [
+    Step(
+      state: _currentStep > 0 ? StepState.complete : StepState.indexed,
+      isActive: _currentStep >= 0,
+      title: Text("ข้อมูลส่วนตัว" , style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, decoration: TextDecoration.underline)),
+      content: Column(
+        children: [
+          TextFormField(
+            controller: _thName,
+            decoration: const InputDecoration(labelText: "ชื่อเต็มภาษาไทย"),
+            keyboardType: TextInputType.text,
+            validator: (value) {
+              if (value==null || value.isEmpty){
+                return "กรุณาป้อนชื่อภาษาไทย";
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            controller: _enName,
+            decoration: const InputDecoration(labelText: "ชื่อเต็มภาษาอังกฤษ"),
+            keyboardType: TextInputType.text,
+            validator: (value) {
+              if (value==null || value.isEmpty){
+                return "กรุณาป้อนชื่อภาษาอังกฤษ";
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            controller: _password,
+            decoration: const InputDecoration(labelText: "รหัสผ่าน"),
+            keyboardType: TextInputType.visiblePassword,
+            validator: (value) {
+              if (value==null || value.isEmpty){
+                return "กรุณาป้อนรหัสผ่าน";
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            controller: _citizenId,
+            decoration: const InputDecoration(labelText: "เลขบัตรประชาชน"),
+            keyboardType: TextInputType.text,
+            validator: (value) {
+              if (value==null || value.isEmpty || value.length != 13){
+                return "กรุณาป้อนเลขบัตรประจำตัวประชาชนให้ถูกต้อง";
+              }
+              return null;
+            },
+          ),
+        ],
+      )
+    ),
+    Step(
+      state: _currentStep > 1 ? StepState.complete : StepState.indexed,
+      isActive: _currentStep >= 1,
+      title: Text("ช่องทางการติดต่อ", style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, decoration: TextDecoration.underline)), 
+      content: Column(
+        children: [
+          Form(
+            key: _formKeyForMail,
+            child: TextFormField(
+              controller: _email,
+              decoration: const InputDecoration(labelText: "อีเมลล์"),
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) {
+                if (value==null || value.isEmpty){
+                  return "กรุณาป้อนอีเมลล์";
+                }
+                return null;
+              },
+            ),
+          )
+        ],
+      )
+    ),
+    Step(
+      isActive: _currentStep >= 2,
+      title: Text("ยืนยันข้อมูล", style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 20, decoration: TextDecoration.underline)), 
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("ชื่อภาษาไทย", style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(_thName.text, style: GoogleFonts.inter(fontSize: 16)),
+              Text("ชื่อภาษาอังกฤษ", style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(_enName.text, style: GoogleFonts.inter(fontSize: 16)),
+              Text("เลขบัตร ปชช.", style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(_citizenId.text, style: GoogleFonts.inter(fontSize: 16)),
+              Text("รหัสผ่าน", style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(_password.text, style: GoogleFonts.inter(fontSize: 16)),
+              Text("อีเมลล์", style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(_email.text, style: GoogleFonts.inter(fontSize: 16))
+            ],
+          ),
+        ],
+      )
+    ),
+  ];
 }
