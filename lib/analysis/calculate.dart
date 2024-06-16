@@ -16,7 +16,7 @@ class CalculatePage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        elevation: 0,
+        elevation: 0.0,
         toolbarHeight: size.height * 0.15,
         flexibleSpace: Padding(
           padding: EdgeInsets.fromLTRB(size.width * 0.04, size.height * 0.07, size.width * 0.04, 0),
