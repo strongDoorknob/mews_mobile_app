@@ -101,7 +101,7 @@ class _PatientFormState extends State<AddPatientPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: size.height * 0.03), // Adjust this to move text down
+              SizedBox(height: size.height * 0.02),
               Text(
                 'เพิ่มข้อมูลคนไข้',
                 style: TextStyle(
@@ -112,7 +112,7 @@ class _PatientFormState extends State<AddPatientPage> {
               ),
               SizedBox(height: size.height * 0.02),
               SizedBox(
-                height: size.height * 0.64, // Adjust this value to make the container taller
+                height: size.height * 0.655, // Adjust this value to make the container taller
                 child: Container(
                   padding: EdgeInsets.all(size.width * 0.04),
                   decoration: BoxDecoration(
@@ -128,12 +128,12 @@ class _PatientFormState extends State<AddPatientPage> {
                           children: [
                             FaIcon(
                               FontAwesomeIcons.fileMedical,
-                              size: size.width * 0.15,
+                              size: size.width * 0.2,
                             ),
                             SizedBox(width: size.width * 0.05),
                             Expanded(
                               child: Container(
-                                padding: EdgeInsets.all(size.width * 0.025),
+                                padding: EdgeInsets.all(size.width * 0.03),
                                 decoration: BoxDecoration(
                                   color: const Color(0xffc2bebe),
                                   borderRadius: BorderRadius.circular(size.width * 0.05),
@@ -144,7 +144,7 @@ class _PatientFormState extends State<AddPatientPage> {
                                     Text(
                                       'คนไข้รหัส',
                                       style: TextStyle(
-                                        fontSize: size.width * 0.045,
+                                        fontSize: size.width * 0.055,
                                         fontWeight: FontWeight.normal,
                                         color: Colors.black,
                                       ),
@@ -152,7 +152,7 @@ class _PatientFormState extends State<AddPatientPage> {
                                     Text(
                                       '<patient_id>',
                                       style: TextStyle(
-                                        fontSize: size.width * 0.05,
+                                        fontSize: size.width * 0.06,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
@@ -165,7 +165,7 @@ class _PatientFormState extends State<AddPatientPage> {
                         ),
                         SizedBox(height: size.height * 0.03),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             FaIcon(FontAwesomeIcons.userAlt, size: size.width * 0.08),
                             SizedBox(width: size.width * 0.05),
@@ -179,7 +179,7 @@ class _PatientFormState extends State<AddPatientPage> {
                                     borderRadius: BorderRadius.circular(size.width * 0.05),
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.015,
+                                    vertical: size.height * 0.01,
                                     horizontal: size.width * 0.04,
                                   ),
                                   isDense: true,
@@ -191,7 +191,7 @@ class _PatientFormState extends State<AddPatientPage> {
                         ),
                         SizedBox(height: size.height * 0.02),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             FaIcon(FontAwesomeIcons.calendarDay, size: size.width * 0.08),
                             SizedBox(width: size.width * 0.05),
@@ -204,7 +204,7 @@ class _PatientFormState extends State<AddPatientPage> {
                                     borderRadius: BorderRadius.circular(size.width * 0.05),
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.015,
+                                    vertical: size.height * 0.01,
                                     horizontal: size.width * 0.04,
                                   ),
                                   isDense: true,
@@ -216,9 +216,9 @@ class _PatientFormState extends State<AddPatientPage> {
                         ),
                         SizedBox(height: size.height * 0.02),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            FaIcon(FontAwesomeIcons.solidHospital, size: size.width * 0.06),
+                            FaIcon(FontAwesomeIcons.solidHospital, size: size.width * 0.08),
                             SizedBox(width: size.width * 0.05),
                             Expanded(
                               child: TextFormField(
@@ -229,7 +229,7 @@ class _PatientFormState extends State<AddPatientPage> {
                                     borderRadius: BorderRadius.circular(size.width * 0.05),
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.015,
+                                    vertical: size.height * 0.01,
                                     horizontal: size.width * 0.04,
                                   ),
                                   isDense: true,
@@ -241,7 +241,7 @@ class _PatientFormState extends State<AddPatientPage> {
                         ),
                         SizedBox(height: size.height * 0.02),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             FaIcon(FontAwesomeIcons.solidCalendarDays, size: size.width * 0.08),
                             SizedBox(width: size.width * 0.05),
@@ -266,7 +266,7 @@ class _PatientFormState extends State<AddPatientPage> {
                         ),
                         SizedBox(height: size.height * 0.02),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             FaIcon(FontAwesomeIcons.solidClock, size: size.width * 0.07),
                             SizedBox(width: size.width * 0.05),
@@ -291,7 +291,7 @@ class _PatientFormState extends State<AddPatientPage> {
                         ),
                         SizedBox(height: size.height * 0.02),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             FaIcon(FontAwesomeIcons.buildingUser, size: size.width * 0.075),
                             SizedBox(width: size.width * 0.05),
@@ -319,22 +319,20 @@ class _PatientFormState extends State<AddPatientPage> {
                   ),
                 ),
               ),
-              SizedBox(height: size.height * 0.02),
+              SizedBox(height: size.height * 0.015),
               Center(
-                child: ElevatedButton(
+                child: TextButton.icon(
+                  label: Text(
+                    'ต่อไป',
+                    style: TextStyle(fontSize: size.width * 0.05),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const CalculatePage()),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.015, horizontal: size.width * 0.1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(size.width * 0.05),
-                    ),
-                  ),
-                  child: Text('ต่อไป', style: TextStyle(fontSize: size.width * 0.05)),
+                  icon: FaIcon(FontAwesomeIcons.solidArrowAltCircleRight, size: size.width * 0.05),
                 ),
               ),
             ],
@@ -344,4 +342,3 @@ class _PatientFormState extends State<AddPatientPage> {
     );
   }
 }
-

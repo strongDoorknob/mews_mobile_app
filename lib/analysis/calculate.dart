@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pulse/results/low.dart';
 import 'package:pulse/screens/setting.dart';
 
 class CalculatePage extends StatelessWidget {
@@ -20,7 +21,8 @@ class CalculatePage extends StatelessWidget {
           children: [
             // Header section
             Padding(
-              padding: EdgeInsets.only(top: size.height * 0.07, bottom: size.height * 0.02),
+              padding: EdgeInsets.only(
+                  top: size.height * 0.07, bottom: size.height * 0.02),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -69,26 +71,24 @@ class CalculatePage extends StatelessWidget {
                     iconSize: size.width * 0.08,
                     onPressed: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SettingsPage())
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()));
                     },
                   ),
                 ],
               ),
             ),
-            // Main content
             Center(
               child: Column(
                 children: [
-                  // Row with icons and input fields
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       // Pulse/HR section
                       Column(
                         children: [
-                          const FaIcon(FontAwesomeIcons.heartbeat, size: 50),
+                          const FaIcon(FontAwesomeIcons.heartbeat, size: 40),
                           const Text('Pulse/HR'),
                           const SizedBox(height: 10),
                           Container(
@@ -96,7 +96,7 @@ class CalculatePage extends StatelessWidget {
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: const TextField(
                               keyboardType: TextInputType.number,
@@ -111,7 +111,8 @@ class CalculatePage extends StatelessWidget {
                       // SpO2 section
                       Column(
                         children: [
-                          const FaIcon(FontAwesomeIcons.maskVentilator, size: 50),
+                          const FaIcon(FontAwesomeIcons.maskVentilator,
+                              size: 40),
                           const Text('SpO2'),
                           const SizedBox(height: 10),
                           Container(
@@ -119,7 +120,7 @@ class CalculatePage extends StatelessWidget {
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: const TextField(
                               keyboardType: TextInputType.number,
@@ -134,7 +135,8 @@ class CalculatePage extends StatelessWidget {
                       // Temp section
                       Column(
                         children: [
-                          const FaIcon(FontAwesomeIcons.thermometerHalf, size: 50),
+                          const FaIcon(FontAwesomeIcons.thermometerHalf,
+                              size: 40),
                           const Text('Temp (°C)'),
                           const SizedBox(height: 10),
                           Container(
@@ -142,7 +144,7 @@ class CalculatePage extends StatelessWidget {
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: const TextField(
                               keyboardType: TextInputType.number,
@@ -156,15 +158,15 @@ class CalculatePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 70),
                   // Other sections follow similar pattern
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Systolic BP section
                       Column(
                         children: [
-                          const FaIcon(FontAwesomeIcons.tint, size: 50),
+                          const FaIcon(FontAwesomeIcons.tint, size: 40),
                           const Text('Systolic BP'),
                           const SizedBox(height: 10),
                           Container(
@@ -172,7 +174,7 @@ class CalculatePage extends StatelessWidget {
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: const TextField(
                               keyboardType: TextInputType.number,
@@ -187,15 +189,18 @@ class CalculatePage extends StatelessWidget {
                       // Patient section
                       Column(
                         children: const [
-                          FaIcon(FontAwesomeIcons.solidUser, size: 50),
-                          Text('<patient>'),
-                          SizedBox(height: 10),
+                          FaIcon(FontAwesomeIcons.solidUser, size: 70),
+                          Text(
+                            '<patient>',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(height: 5),
                           Text(
                             'ลงคะแนน\n(เลือกตัวเลขอยู่ในช่วงนั้น ๆ)',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
+                              color: Colors.black,
+                              fontSize: 13,
                             ),
                           ),
                         ],
@@ -203,7 +208,7 @@ class CalculatePage extends StatelessWidget {
                       // RR section
                       Column(
                         children: [
-                          const FaIcon(FontAwesomeIcons.lungs, size: 50),
+                          const FaIcon(FontAwesomeIcons.lungs, size: 40),
                           const Text('RR'),
                           const SizedBox(height: 10),
                           Container(
@@ -225,7 +230,7 @@ class CalculatePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   // Conscious and Urine sections
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -233,15 +238,18 @@ class CalculatePage extends StatelessWidget {
                       // Conscious section
                       Column(
                         children: [
-                          const FaIcon(FontAwesomeIcons.brain, size: 50),
-                          const Text('Conscious\n(C, A, V, P, U)'),
-                          const SizedBox(height: 10),
+                          const FaIcon(FontAwesomeIcons.brain, size: 45),
+                          const Text(
+                            'Conscious\n(C, A, V, P, U)',
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 12),
                           Container(
                             width: 100,
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: const TextField(
                               keyboardType: TextInputType.text,
@@ -256,15 +264,18 @@ class CalculatePage extends StatelessWidget {
                       // Urine section
                       Column(
                         children: [
-                          const FaIcon(FontAwesomeIcons.vial, size: 50),
-                          const Text('Urine\n(>=2 hours)'),
-                          const SizedBox(height: 10),
+                          const FaIcon(FontAwesomeIcons.vial, size: 45),
+                          const Text(
+                            'Urine\n(>=2 hours)',
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 12),
                           Container(
                             width: 100,
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: const TextField(
                               keyboardType: TextInputType.number,
@@ -278,14 +289,17 @@ class CalculatePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 50),
                   ElevatedButton(
                     onPressed: () {
-                      // Calculate action
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LowPage()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xffFFB2B2),
-                      padding: EdgeInsets.symmetric(vertical: size.height * 0.02, horizontal: size.width * 0.2),
+                      padding: EdgeInsets.symmetric(
+                          vertical: size.height * 0.02,
+                          horizontal: size.width * 0.07),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(size.width * 0.05),
                       ),
@@ -306,10 +320,4 @@ class CalculatePage extends StatelessWidget {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: CalculatePage(),
-  ));
 }
