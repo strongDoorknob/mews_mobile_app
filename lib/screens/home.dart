@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,141 +15,144 @@ class HomePage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: size.height * 0.08,
-        flexibleSpace: Padding(
-          padding: EdgeInsets.fromLTRB(size.width * 0.04, size.height * 0.07, size.width * 0.04, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(size.width * 0.04),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: FaIcon(
-                      FontAwesomeIcons.solidCircleUser,
-                      size: size.width * 0.1,
-                    ),
-                    onPressed: () {},
-                  ),
-                  SizedBox(width: size.width * 0.02),
-                  Text.rich(
-                    TextSpan(
+              // Header section
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.07, bottom: size.height * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
-                        TextSpan(
-                          text: 'ยินดีต้อนรับ,\n',
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: size.width * 0.06,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.solidCircleUser,
+                            size: size.width * 0.1,
                           ),
+                          onPressed: () {},
                         ),
-                        TextSpan(
-                          text: '<name>!!',
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: size.width * 0.05,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black,
-                            ),
+                        SizedBox(width: size.width * 0.02),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'ยินดีต้อนรับ,\n',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.06,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text: '<name>!!',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    IconButton(
+                      icon: FaIcon(FontAwesomeIcons.cog),
+                      iconSize: size.width * 0.08,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SettingsPage()),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.cog),
-                iconSize: size.width * 0.08,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SettingsPage()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: Container(
-        margin: EdgeInsets.only(top: size.height * 0.03),
-        padding: EdgeInsets.all(size.width * 0.04),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(size.width * 0.05),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.search, color: Color.fromARGB(255, 128, 127, 127)),
-                  SizedBox(width: size.width * 0.02),
-                  const Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'ค้นหา...',
-                        border: InputBorder.none,
+
+              // Search bar
+              Container(
+                margin: EdgeInsets.only(top: size.height * 0.02),
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(size.width * 0.05),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.search, color: Color.fromARGB(255, 128, 127, 127)),
+                    SizedBox(width: size.width * 0.02),
+                    const Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'ค้นหา...',
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: size.height * 0.02),
-            Container(
-              margin: EdgeInsets.only(top: size.height * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'ฟีเจอร์ใช้งาน',
-                    style: TextStyle(fontSize: size.width * 0.05, fontWeight: FontWeight.bold),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const AllFeaturesPage()),
-                      );
-                    },
-                    child: Text(
-                      'ดูทั้งหมด',
-                      style: TextStyle(color: Colors.blue, fontSize: size.width * 0.035),
+              SizedBox(height: size.height * 0.02),
+
+              // Features section
+              Container(
+                margin: EdgeInsets.only(top: size.height * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'ฟีเจอร์ใช้งาน',
+                      style: TextStyle(fontSize: size.width * 0.05, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const AllFeaturesPage()),
+                        );
+                      },
+                      child: Text(
+                        'ดูทั้งหมด',
+                        style: TextStyle(color: Colors.blue, fontSize: size.width * 0.035),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: size.height * 0.02),
-            SizedBox(
-              height: size.height * 0.15,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  FeatureItem(
-                    title: 'MEWS',
-                    icon: Icons.widgets,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MewsScreen()),
-                      );
-                    },
-                  ),
-                  // Add more FeatureItem widgets here
-                ],
+              SizedBox(height: size.height * 0.02),
+              SizedBox(
+                height: size.height * 0.15,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    FeatureItem(
+                      title: 'MEWS',
+                      icon: Icons.widgets,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MewsScreen()),
+                        );
+                      },
+                    ),
+                    // Add more FeatureItem widgets here
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Center(
+              SizedBox(height: size.height * 0.1),
+
+              // Center content section
+              Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -163,8 +166,8 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
