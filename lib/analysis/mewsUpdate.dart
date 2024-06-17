@@ -8,7 +8,7 @@ import 'package:pulse/screens/home.dart';
 import 'package:pulse/screens/setting.dart';
 
 class MewsUpdatePage extends StatelessWidget {
-  const MewsUpdatePage({Key? key}) : super(key: key);
+  const MewsUpdatePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,8 @@ class MewsUpdatePage extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const HomePage()),
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
                           );
                         },
                       ),
@@ -78,7 +79,8 @@ class MewsUpdatePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SettingsPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const SettingsPage()),
                       );
                     },
                   ),
@@ -106,79 +108,95 @@ class MewsUpdatePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const AddPatientPage()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: size.width * 0.05,
-                        vertical: size.height * 0.015,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      backgroundColor: Colors.black,
-                    ),
-                    child: Row(
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.plus,
-                          color: Colors.white,
-                          size: size.width * 0.04,
+              padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.02, vertical: size.height * 0.02),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.4, // Fixed width for the button
+                      height: size.height * 0.06, // Fixed height for the button
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AddPatientPage()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          backgroundColor: Colors.black,
                         ),
-                        SizedBox(width: size.width * 0.02),
-                        Text(
-                          'เพิ่มข้อมูล',
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: size.width * 0.04,
+                        child: Row(
+                          mainAxisAlignment:
+                              MainAxisAlignment.center, // Center the content
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.plus,
                               color: Colors.white,
+                              size: size.width * 0.04,
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.height * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      text: 'หรือ ',
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          fontSize: size.width * 0.04,
-                          color: Colors.black,
+                            SizedBox(width: size.width * 0.02),
+                            Text(
+                              'เพิ่มข้อมูล',
+                              style: GoogleFonts.inter(
+                                textStyle: TextStyle(
+                                  fontSize: size.width * 0.04,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'นำเข้า',
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: size.width * 0.04,
-                              color: Colors.black,
-                              decoration: TextDecoration.underline,
+                    ),
+                    SizedBox(height: size.height * 0.02),
+                    RichText(
+                      textAlign: TextAlign.right,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'หรือ ',
+                            style: GoogleFonts.inter(
+                              textStyle: TextStyle(
+                                fontSize: size.width * 0.04,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                          TextSpan(
+                            text: 'นำเข้า',
+                            style: GoogleFonts.inter(
+                              textStyle: TextStyle(
+                                fontSize: size.width * 0.04,
+                                color: Colors.black,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                          TextSpan(
+                            text: '\nจากฐานข้อมูล',
+                            style: GoogleFonts.inter(
+                              textStyle: TextStyle(
+                                fontSize: size.width * 0.04,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
@@ -189,12 +207,12 @@ class MewsUpdatePage extends StatelessWidget {
 
   Widget sectionTitle(String title, Size size) {
     return Padding(
-      padding: EdgeInsets.only(left: size.width * 0.05),
+      padding: EdgeInsets.only(left: size.width * 0.07),
       child: Text(
         title,
         style: GoogleFonts.inter(
           textStyle: TextStyle(
-            fontSize: size.width * 0.06,
+            fontSize: size.width * 0.08,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
@@ -270,4 +288,3 @@ class MewsUpdatePage extends StatelessWidget {
     );
   }
 }
-
