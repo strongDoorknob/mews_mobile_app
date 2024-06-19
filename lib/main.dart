@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pulse/analysis/mewsUpdate.dart';
 import 'package:pulse/screens/home.dart';
 
 void main() {
@@ -21,8 +20,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      // home: const IntroSliderPage(),
-      home: const MewsUpdatePage(),
+      home: const HomePage(),
     );
   }
 }
