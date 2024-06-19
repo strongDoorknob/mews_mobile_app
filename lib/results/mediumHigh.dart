@@ -7,8 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pulse/screens/home.dart';
 import 'package:pulse/screens/setting.dart';
 
-class LowPage extends StatelessWidget {
-  const LowPage({super.key});
+class MediumHighPage extends StatelessWidget {
+  const MediumHighPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +128,7 @@ class LowPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '0', // This should be changeable based on the calculation.
+                        '4', // This should be changeable based on the calculation.
                         style: GoogleFonts.inter(
                           textStyle: TextStyle(
                             fontSize: size.width * 0.2,
@@ -153,7 +153,7 @@ class LowPage extends StatelessWidget {
                   ),
                   SizedBox(height: size.height * 0.02),
                   Text(
-                    'ความเสี่ยงต่ำ',
+                    'ความเสี่ยงปานกลาง-สูง',
                     style: GoogleFonts.inter(
                       textStyle: TextStyle(
                         fontSize: size.width * 0.08,
