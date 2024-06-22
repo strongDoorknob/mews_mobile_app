@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pulse/nursing/HighResult.dart';
+import 'package:pulse/nursing/MedResult.dart';
+import 'package:pulse/nursing/lowMedResult.dart';
 import 'package:pulse/screens/home.dart';
 
 void main() {
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const HighResultPage(),
     );
   }
 }
