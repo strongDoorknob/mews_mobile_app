@@ -14,6 +14,8 @@ class LowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    const String name = '하준';
+    final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -21,25 +23,46 @@ class LowPage extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: size.height * 0.07),
+              padding: EdgeInsets.only(
+                top: size.height * 0.07,
+                bottom: size.height * 0.02,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      IconButton(
-                        icon: FaIcon(
-                          FontAwesomeIcons.solidCircleUser,
-                          size: size.width * 0.1,
-                        ),
-                        onPressed: () {
+                      GestureDetector(
+                        onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ),
+                          );
                         },
+                        child: Container(
+                          width: size.width * 0.13,
+                          height: size.width * 0.13,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xffBA90CB), // Adjust the color as needed
+                          ),
+                          child: Center(
+                            child: Text(
+                              firstLetter,
+                              style: GoogleFonts.inter(
+                                textStyle: TextStyle(
+                                  fontSize: size.width * 0.05,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(width: size.width * 0.02),
+                      SizedBox(width: size.width * 0.03),
                       Text.rich(
                         TextSpan(
                           children: [
@@ -54,7 +77,7 @@ class LowPage extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: '<name>!!',
+                              text: '$name!!',
                               style: GoogleFonts.inter(
                                 textStyle: TextStyle(
                                   fontSize: size.width * 0.05,
@@ -74,7 +97,9 @@ class LowPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SettingsPage()),
+                        MaterialPageRoute(
+                          builder: (context) => SettingsPage(),
+                        ),
                       );
                     },
                   ),
@@ -97,11 +122,12 @@ class LowPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: size.height * 0.01),
+            SizedBox(height: size.height * 0.008),
             Container(
+              height: size.height * 0.7,
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
+                color: Color(0xffFFDDEC),
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Column(
@@ -116,16 +142,17 @@ class LowPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: size.height * 0.02),
+                  SizedBox(height: size.height * 0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(
+                      AnimatedContainer(
+                        duration: Duration(seconds: 2),
                         width: size.width * 0.25,
                         height: size.width * 0.25,
-                        child: Image.asset(
-                          'assets/images/cloud_sun.png', // Replace with your image path
-                          fit: BoxFit.contain,
+                        child: FaIcon(
+                          FontAwesomeIcons.cloudSun,
+                          size: size.width * 0.25,
                         ),
                       ),
                       Text(
@@ -137,19 +164,21 @@ class LowPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      AnimatedContainer(
+                        duration: Duration(seconds: 2),
                         width: size.width * 0.25,
                         height: size.width * 0.25,
-                        child: Image.asset(
-                          'assets/images/cloud.png', // Replace with your image path
-                          fit: BoxFit.contain,
+                        child: FaIcon(
+                          FontAwesomeIcons.cloud,
+                          size: size.width * 0.25,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: size.height * 0.02),
+                  SizedBox(height: size.height * 0.015),
                   FaIcon(
                     FontAwesomeIcons.solidSmileBeam,
+                    color: Color.fromARGB(255, 153, 227, 55),
                     size: size.width * 0.26,
                   ),
                   SizedBox(height: size.height * 0.02),
@@ -181,19 +210,26 @@ class LowPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LowResultPage()),
+                                builder: (context) => LowResultPage(),
+                              ),
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xffC3C3C3),
+                            backgroundColor: Color(0xffe8a0bf),
                             textStyle: TextStyle(color: Colors.black),
                           ),
-                          child: Text('กดดูที่นี่'),
+                          child: Text(
+                            'กดดูที่นี่',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: size.height * 0.02),
+                  SizedBox(height: size.height * 0.025),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -204,8 +240,7 @@ class LowPage extends StatelessWidget {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text:
-                                      'สามารถกดดูหรือ\nอัพเดทคะแนนคนไข้\nได้ ',
+                                  text: 'สามารถกดดูหรือ\nอัพเดทคะแนนคนไข้\nได้ ',
                                   style: GoogleFonts.inter(
                                     textStyle: TextStyle(
                                       fontSize: size.width * 0.032,
@@ -217,6 +252,7 @@ class LowPage extends StatelessWidget {
                                   text: 'ที่นี่',
                                   style: GoogleFonts.inter(
                                     textStyle: TextStyle(
+                                      color: Colors.red,
                                       fontSize: size.width * 0.032,
                                       fontWeight: FontWeight.normal,
                                       decoration: TextDecoration.underline,
@@ -234,13 +270,24 @@ class LowPage extends StatelessWidget {
                         ),
                       ),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xffFFDEAC),
+                        ),
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ),
                           );
                         },
-                        child: Text('กลับไปที่หน้าหลัก'),
+                        child: Text(
+                          'กลับไปที่หน้าหลัก',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),

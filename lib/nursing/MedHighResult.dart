@@ -14,6 +14,9 @@ class MediumHighResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    const String name =
+        'ณัฐปภัสร์'; 
+    final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -21,64 +24,85 @@ class MediumHighResultPage extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.07, bottom: size.height * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: FaIcon(
-                          FontAwesomeIcons.solidCircleUser,
-                          size: size.width * 0.1,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      SizedBox(width: size.width * 0.02),
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'ยินดีต้อนรับ,\n',
-                              style: GoogleFonts.inter(
-                                textStyle: TextStyle(
-                                  fontSize: size.width * 0.06,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                padding: EdgeInsets.only(
+                    top: size.height * 0.07, bottom: size.height * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          child: Container(
+                            width: size.width * 0.13,
+                            height: size.width * 0.13,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xffBA90CB), // Adjust the color as needed
+                            ),
+                            child: Center(
+                              child: Text(
+                                firstLetter,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ),
-                            TextSpan(
-                              text: '<name>!!',
-                              style: GoogleFonts.inter(
-                                textStyle: TextStyle(
-                                  fontSize: size.width * 0.05,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(width: size.width * 0.03),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'ยินดีต้อนรับ,\n',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.06,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              TextSpan(
+                                text: '$name!!',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  IconButton(
-                    icon: FaIcon(FontAwesomeIcons.cog),
-                    iconSize: size.width * 0.08,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SettingsPage()),
-                      );
-                    },
-                  ),
-                ],
+                      ],
+                    ),
+                    IconButton(
+                      icon: FaIcon(FontAwesomeIcons.cog),
+                      iconSize: size.width * 0.08,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
+
             Row(
               children: [
                 IconButton(

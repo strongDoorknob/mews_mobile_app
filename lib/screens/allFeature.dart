@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_declarations
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +14,10 @@ class AllFeaturesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final String name =
+        'ณัฐปภัสร์'; 
+    final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
+
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -24,25 +28,42 @@ class AllFeaturesPage extends StatelessWidget {
             children: [
               // Header section
               Padding(
-                padding: EdgeInsets.only(top: size.height * 0.07, bottom: size.height * 0.02),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.07, bottom: size.height * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                          icon: FaIcon(
-                            FontAwesomeIcons.solidCircleUser,
-                            size: size.width * 0.1,
-                          ),
-                          onPressed: () {
+                        GestureDetector(
+                          onTap: () {
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const HomePage()),
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
                           },
+                          child: Container(
+                            width: size.width * 0.13,
+                            height: size.width * 0.13,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xffBA90CB), // Adjust the color as needed
+                            ),
+                            child: Center(
+                              child: Text(
+                                firstLetter,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(width: size.width * 0.02),
+                        SizedBox(width: size.width * 0.03),
                         Text.rich(
                           TextSpan(
                             children: [
@@ -57,7 +78,7 @@ class AllFeaturesPage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: '<name>!!',
+                                text: '$name!!',
                                 style: GoogleFonts.inter(
                                   textStyle: TextStyle(
                                     fontSize: size.width * 0.05,
@@ -72,18 +93,20 @@ class AllFeaturesPage extends StatelessWidget {
                       ],
                     ),
                     IconButton(
-                      icon: const FaIcon(FontAwesomeIcons.cog),
+                      icon: FaIcon(FontAwesomeIcons.cog),
                       iconSize: size.width * 0.08,
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const SettingsPage()),
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()),
                         );
                       },
                     ),
                   ],
                 ),
               ),
+
               SizedBox(height: size.height * 0.02),
               Text(
                 'ฟีเจอร์ทั้งหมด',
@@ -105,7 +128,8 @@ class AllFeaturesPage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const MewsScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const MewsScreen()),
                       );
                     },
                     child: const FeatureCard(
@@ -118,7 +142,8 @@ class AllFeaturesPage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const AddPatientPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const AddPatientPage()),
                       );
                     },
                     child: const FeatureCard(
@@ -139,7 +164,9 @@ class AllFeaturesPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FaIcon(FontAwesomeIcons.solidSmileWink, size: size.width * 0.2),
+                    FaIcon(FontAwesomeIcons.solidSmileWink,
+                    color: Color(0xffFFCD50),
+                        size: size.width * 0.2),
                     SizedBox(height: size.height * 0.02),
                     Text(
                       'ไม่มีอะไรเพิ่มแล้ววว\nเราจะแจ้งให้คุณทราบเร็วๆนี้ถ้ามีการอัพเดท',
@@ -175,23 +202,23 @@ class FeatureCard extends StatelessWidget {
       width: 150,
       height: 150,
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Color.fromARGB(255, 182, 135, 201),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FaIcon(icon, size: 40, color: Colors.grey[700]),
+          FaIcon(icon, size: 40, color: Color.fromARGB(255, 237, 173, 200)),
           const SizedBox(height: 8.0),
           Text(
             title,
-            style: GoogleFonts.inter(fontWeight: FontWeight.bold),
+            style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
           ),
           const SizedBox(height: 4.0),
           Text(
             subtitle,
             textAlign: TextAlign.center,
-            style: GoogleFonts.inter(fontSize: 12, color: Colors.grey[600]),
+            style: GoogleFonts.inter(fontSize: 12, color: const Color.fromARGB(255, 234, 234, 234)),
           ),
         ],
       ),

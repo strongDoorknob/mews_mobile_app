@@ -14,6 +14,10 @@ class LowResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    const String name =
+        '하준'; 
+    final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
+
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -21,68 +25,88 @@ class LowResultPage extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.07, bottom: size.height * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: FaIcon(
-                          FontAwesomeIcons.solidCircleUser,
-                          size: size.width * 0.1,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      SizedBox(width: size.width * 0.02),
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'ยินดีต้อนรับ,\n',
-                              style: GoogleFonts.inter(
-                                textStyle: TextStyle(
-                                  fontSize: size.width * 0.06,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                padding: EdgeInsets.only(
+                    top: size.height * 0.07, bottom: size.height * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          child: Container(
+                            width: size.width * 0.13,
+                            height: size.width * 0.13,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xffBA90CB), // Adjust the color as needed
+                            ),
+                            child: Center(
+                              child: Text(
+                                firstLetter,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ),
-                            TextSpan(
-                              text: '<name>!!',
-                              style: GoogleFonts.inter(
-                                textStyle: TextStyle(
-                                  fontSize: size.width * 0.05,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(width: size.width * 0.03),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'ยินดีต้อนรับ,\n',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.06,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              TextSpan(
+                                text: '$name!!',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  IconButton(
-                    icon: FaIcon(FontAwesomeIcons.cog),
-                    iconSize: size.width * 0.08,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SettingsPage()),
-                      );
-                    },
-                  ),
-                ],
+                      ],
+                    ),
+                    IconButton(
+                      icon: FaIcon(FontAwesomeIcons.cog),
+                      iconSize: size.width * 0.08,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
             Row(
               children: [
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.arrowLeft),
+                  icon: FaIcon(FontAwesomeIcons.backward),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -121,7 +145,7 @@ class LowResultPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
+                color: Color(0xffFFDDEC),
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Column(
@@ -137,7 +161,7 @@ class LowResultPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.0, vertical: 10.0),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade400,
+                          color: Color(0xffe8a0bf),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Text(
@@ -146,7 +170,7 @@ class LowResultPage extends StatelessWidget {
                             textStyle: TextStyle(
                               fontSize: size.width * 0.05,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Color(0xff323232),
                             ),
                           ),
                         ),
@@ -189,6 +213,7 @@ class LowResultPage extends StatelessWidget {
                                   text: 'ที่นี่',
                                   style: GoogleFonts.inter(
                                     textStyle: TextStyle(
+                                      color: Colors.red,
                                       fontSize: size.width * 0.032,
                                       fontWeight: FontWeight.normal,
                                       decoration: TextDecoration.underline,
@@ -206,13 +231,16 @@ class LowResultPage extends StatelessWidget {
                         ),
                       ),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xffffdeac),
+                        ),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         },
-                        child: Text('กลับไปที่หน้าหลัก'),
+                        child: Text('กลับไปที่หน้าหลัก', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
                       ),
                     ],
                   ),

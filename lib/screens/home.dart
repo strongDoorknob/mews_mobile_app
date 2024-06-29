@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, prefer_const_declarations
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final String name =
+        'ณัฐปภัสร์'; 
+    final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -23,20 +26,42 @@ class HomePage extends StatelessWidget {
             children: [
               // Header section
               Padding(
-                padding: EdgeInsets.only(top: size.height * 0.07, bottom: size.height * 0.02),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.07, bottom: size.height * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                          icon: FaIcon(
-                            FontAwesomeIcons.solidCircleUser,
-                            size: size.width * 0.1,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          child: Container(
+                            width: size.width * 0.13,
+                            height: size.width * 0.13,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xffBA90CB), // Adjust the color as needed
+                            ),
+                            child: Center(
+                              child: Text(
+                                firstLetter,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                          onPressed: () {},
                         ),
-                        SizedBox(width: size.width * 0.02),
+                        SizedBox(width: size.width * 0.03),
                         Text.rich(
                           TextSpan(
                             children: [
@@ -51,7 +76,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: '<name>!!',
+                                text: '$name!!',
                                 style: GoogleFonts.inter(
                                   textStyle: TextStyle(
                                     fontSize: size.width * 0.05,
@@ -71,7 +96,8 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const SettingsPage()),
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()),
                         );
                       },
                     ),
@@ -86,10 +112,25 @@ class HomePage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(size.width * 0.05),
+                  border: Border.all(
+                    color: Color(0xff838383), // Border color
+                    width: 2.4, // Border width
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black
+                          .withOpacity(0.3), // Shadow color with opacity
+                      spreadRadius: 0, // How much the shadow spreads
+                      blurRadius: 4, // The blur radius of the shadow
+                      offset:
+                          Offset(0, 4), // Offset in x and y direction (x, y)
+                    ),
+                  ],
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.search, color: Color.fromARGB(255, 128, 127, 127)),
+                    const Icon(Icons.search,
+                        color: Color.fromARGB(255, 128, 127, 127)),
                     SizedBox(width: size.width * 0.02),
                     const Expanded(
                       child: TextField(
@@ -102,6 +143,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
+
               SizedBox(height: size.height * 0.02),
 
               // Features section
@@ -112,18 +154,24 @@ class HomePage extends StatelessWidget {
                   children: [
                     Text(
                       'ฟีเจอร์ใช้งาน',
-                      style: TextStyle(fontSize: size.width * 0.05, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Color(0xff464646),
+                          fontSize: size.width * 0.05,
+                          fontWeight: FontWeight.bold),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const AllFeaturesPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const AllFeaturesPage()),
                         );
                       },
                       child: Text(
                         'ดูทั้งหมด',
-                        style: TextStyle(color: Colors.blue, fontSize: size.width * 0.035),
+                        style: TextStyle(
+                            color: Color(0xff575757),
+                            fontSize: size.width * 0.035),
                       ),
                     ),
                   ],
@@ -141,10 +189,12 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const MewsScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => const MewsScreen()),
                         );
                       },
                     ),
+
                     // Add more FeatureItem widgets here
                   ],
                 ),
@@ -156,7 +206,11 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FaIcon(FontAwesomeIcons.solidSmileWink, size: size.width * 0.2),
+                    FaIcon(
+                      FontAwesomeIcons.solidSmileWink,
+                      size: size.width * 0.2,
+                      color: Color(0xffffcd50),
+                    ),
                     SizedBox(height: size.height * 0.02),
                     Text(
                       'ไม่มีอะไรเพิ่มแล้ววว\nเราจะแจ้งให้คุณทราบเร็วๆนี้ถ้ามีการอัพเดท',
@@ -196,15 +250,24 @@ class FeatureItem extends StatelessWidget {
         width: size.width * 0.25,
         margin: EdgeInsets.only(right: size.width * 0.04),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: Color(0xffba90cb),
           borderRadius: BorderRadius.circular(size.width * 0.02),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: size.width * 0.1, color: Colors.grey),
+            Icon(icon, size: size.width * 0.1, color: Color(0xffe8a0bf)),
             SizedBox(height: size.height * 0.01),
-            Text(title, textAlign: TextAlign.center),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: size.width * 0.045, // Make the font bold
+                color:
+                    Colors.white, // Set the color to white for better contrast
+              ),
+            ),
           ],
         ),
       ),

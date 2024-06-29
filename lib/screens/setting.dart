@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_declarations
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +11,10 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final String name =
+        'ณัฐปภัสร์'; 
+    final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
+
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -19,37 +25,86 @@ class SettingsPage extends StatelessWidget {
             children: [
               // Header section
               Padding(
-                padding: EdgeInsets.only(top: size.height * 0.07, bottom: size.height * 0.02),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.07, bottom: size.height * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back, color: Colors.black),
-                          onPressed: () {
+                        GestureDetector(
+                          onTap: () {
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const HomePage()),
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
                           },
-                        ),
-                        SizedBox(width: size.width * 0.02),
-                        Text(
-                          'การตั้งค่า',
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: size.width * 0.06,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                          child: Container(
+                            width: size.width * 0.13,
+                            height: size.width * 0.13,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xffBA90CB), // Adjust the color as needed
                             ),
+                            child: Center(
+                              child: Text(
+                                firstLetter,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: size.width * 0.03),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'ยินดีต้อนรับ,\n',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.06,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text: '$name!!',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
+                    IconButton(
+                      icon: FaIcon(FontAwesomeIcons.cog),
+                      iconSize: size.width * 0.08,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
+
+
               // Search bar
               Container(
                 margin: EdgeInsets.only(top: size.height * 0.02),
@@ -57,10 +112,25 @@ class SettingsPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(size.width * 0.05),
+                  border: Border.all(
+                    color: Color(0xff838383), // Border color
+                    width: 2.4, // Border width
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black
+                          .withOpacity(0.3), // Shadow color with opacity
+                      spreadRadius: 0, // How much the shadow spreads
+                      blurRadius: 4, // The blur radius of the shadow
+                      offset:
+                          Offset(0, 4), // Offset in x and y direction (x, y)
+                    ),
+                  ],
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.search, color: Colors.grey),
+                    const Icon(Icons.search,
+                        color: Color.fromARGB(255, 128, 127, 127)),
                     SizedBox(width: size.width * 0.02),
                     const Expanded(
                       child: TextField(
@@ -152,14 +222,14 @@ class SettingsItem extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return ListTile(
-      leading: Icon(icon, color: Colors.black, size: size.width * 0.07),
+      leading: Icon(icon, color: Colors.black, size: size.width * 0.09),
       title: Text(
         title,
         style: GoogleFonts.inter(
           textStyle: TextStyle(fontSize: size.width * 0.045),
         ),
       ),
-      trailing: FaIcon(FontAwesomeIcons.circleArrowRight, color: Colors.black, size: size.width * 0.05),
+      trailing: FaIcon(FontAwesomeIcons.circleArrowRight, color: Colors.black, size: size.width * 0.065),
       onTap: onTap,
     );
   }
