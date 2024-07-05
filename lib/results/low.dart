@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pulse/nursing/lowResult.dart';
 import 'package:pulse/patientinfo/indCRUD.dart';
+import 'package:pulse/patientinfo/mewsFullReport.dart';
 import 'package:pulse/screens/home.dart';
 import 'package:pulse/screens/setting.dart';
 
@@ -134,15 +135,16 @@ class LowPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'คะแนนโดย\nรวม',
+                    'คะแนนโดยรวม',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.inter(
                       textStyle: TextStyle(
-                        fontSize: size.width * 0.08,
+                        fontSize: size.width * 0.085,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
+                  SizedBox(height: size.height * 0.035),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -151,9 +153,9 @@ class LowPage extends StatelessWidget {
                           duration: Duration(seconds: 2),
                           width: size.width * 0.25,
                           height: size.width * 0.25,
-                          child: FaIcon(
-                            FontAwesomeIcons.cloudSun,
-                            size: size.width * 0.25,
+                          child: Image.asset(
+                            'assets/images/sun-cloud.png',
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
@@ -175,9 +177,9 @@ class LowPage extends StatelessWidget {
                           duration: Duration(seconds: 2),
                           width: size.width * 0.25,
                           height: size.width * 0.25,
-                          child: FaIcon(
-                            FontAwesomeIcons.cloud,
-                            size: size.width * 0.25,
+                          child: Image.asset(
+                            'assets/images/clouds.png',
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
@@ -270,7 +272,7 @@ class LowPage extends StatelessWidget {
                                     ..onTap = () {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => indPatientInfo()),
+                                        MaterialPageRoute(builder: (context) => FullReport()),
                                       );
                                     },
                                 ),
