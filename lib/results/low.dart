@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pulse/nursing/lowResult.dart';
+import 'package:pulse/patientinfo/indCRUD.dart';
 import 'package:pulse/screens/home.dart';
 import 'package:pulse/screens/setting.dart';
 
@@ -142,35 +143,42 @@ class LowPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: size.height * 0.01),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      AnimatedContainer(
-                        duration: Duration(seconds: 2),
-                        width: size.width * 0.25,
-                        height: size.width * 0.25,
-                        child: FaIcon(
-                          FontAwesomeIcons.cloudSun,
-                          size: size.width * 0.25,
-                        ),
-                      ),
-                      Text(
-                        '0', // This should be changeable based on the calculation.
-                        style: GoogleFonts.inter(
-                          textStyle: TextStyle(
-                            fontSize: size.width * 0.2,
-                            fontWeight: FontWeight.bold,
+                      Flexible(
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 2),
+                          width: size.width * 0.25,
+                          height: size.width * 0.25,
+                          child: FaIcon(
+                            FontAwesomeIcons.cloudSun,
+                            size: size.width * 0.25,
                           ),
                         ),
                       ),
-                      AnimatedContainer(
-                        duration: Duration(seconds: 2),
-                        width: size.width * 0.25,
-                        height: size.width * 0.25,
-                        child: FaIcon(
-                          FontAwesomeIcons.cloud,
-                          size: size.width * 0.25,
+                      SizedBox(width: size.width * 0.1),
+                      Flexible(
+                        child: Text(
+                          '0', // This should be changeable based on the calculation.
+                          style: GoogleFonts.inter(
+                            textStyle: TextStyle(
+                              fontSize: size.width * 0.2,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: size.width * 0.1),
+                      Flexible(
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 2),
+                          width: size.width * 0.25,
+                          height: size.width * 0.25,
+                          child: FaIcon(
+                            FontAwesomeIcons.cloud,
+                            size: size.width * 0.25,
+                          ),
                         ),
                       ),
                     ],
@@ -260,7 +268,10 @@ class LowPage extends StatelessWidget {
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      // Navigate to another page
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => indPatientInfo()),
+                                      );
                                     },
                                 ),
                               ],
