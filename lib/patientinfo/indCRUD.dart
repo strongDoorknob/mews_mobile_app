@@ -6,9 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pulse/models/patientData.dart';
 import 'package:timelines/timelines.dart';
 
-// Assuming you have the following widgets in your project
-import 'package:pulse/patientinfo/patientGeneralInfoListPage.dart'; // For navigation
-
 class indPatientInfo extends StatefulWidget {
   const indPatientInfo({Key? key});
 
