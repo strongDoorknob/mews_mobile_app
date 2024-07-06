@@ -1,11 +1,9 @@
-// ignore_for_file: unused_import
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pulse/models/patientData.dart';
-import 'package:pulse/patientinfo/mewsFullReport.dart';
-import 'package:pulse/patientinfo/patientListPage.dart';
 import 'package:pulse/themes/color.dart';
 
 class PatientMewsDetail extends StatefulWidget {
@@ -18,39 +16,38 @@ class PatientMewsDetail extends StatefulWidget {
 class _PatientMewsDetailState extends State<PatientMewsDetail> {
   @override
   Widget build(BuildContext context) {
-    return 
-    // Scaffold(
-    //   backgroundColor: primaryColor,
-    //   body: 
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 10,),
+    final Size size = MediaQuery.of(context).size;
 
-          Container(
-            // margin: const EdgeInsets.symmetric(horizontal: 10),
-            // padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: secondaryColor,
-              borderRadius: BorderRadius.circular(15)
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const FaIcon(FontAwesomeIcons.fileWaveform, size: 50, color: Color.fromARGB(255, 84, 84, 84),),
-                    
-                    const SizedBox(width: 20,),
-
-                    Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: size.height * 0.002),
+        Container(
+          decoration: BoxDecoration(
+            color: Color(0xffFFDDEC),
+            borderRadius: BorderRadius.circular(size.width * 0.05),
+          ),
+          padding: EdgeInsets.all(size.width * 0.02),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.fileWaveform,
+                    size: size.width * 0.1,
+                    color: Color.fromARGB(255, 161, 161, 161),
+                  ),
+                  SizedBox(width: size.width * 0.05),
+                  Expanded(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           data[1].name,
                           style: GoogleFonts.inter(
-                            fontSize: 20,
+                            fontSize: size.width * 0.06,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         Row(
@@ -58,198 +55,183 @@ class _PatientMewsDetailState extends State<PatientMewsDetail> {
                             Text(
                               "HN: ${data[1].hn}, ",
                               style: GoogleFonts.inter(
-                                fontSize: 20,
+                                fontSize: size.width * 0.04,
                               ),
                             ),
                             Text(
                               "เตียงหมายเลข ${data[1].bedNumber}",
                               style: GoogleFonts.inter(
-                                fontSize: 20,
+                                fontSize: size.width * 0.04,
                               ),
                             ),
                           ],
                         )
                       ],
                     ),
-                  ],
-                ),
-
-                const SizedBox(height: 20,),
-
-                Text(
-                  "เวลาที่ตรวจล่าสุด",
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
                   ),
+                ],
+              ),
+              SizedBox(height: size.height * 0.023),
+              Text(
+                "เวลาที่ตรวจล่าสุด",
+                style: GoogleFonts.inter(
+                  fontSize: size.width * 0.054,
+                  fontWeight: FontWeight.bold,
                 ),
-
-                const SizedBox(height: 10,),
-
-                Row(
-                  children: [
-                    const FaIcon(FontAwesomeIcons.solidClock, color: Color.fromARGB(255, 84, 84, 84), size: 60,),
-                    
-                    const SizedBox(width: 10,),
-
-                    Text(
-                      data[1].latestMonitor,
-                      style: GoogleFonts.inter(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold
-                      ),
-                    )
-                  ],
-                ),
-
-                const SizedBox(height: 10,),
-
-                Row(
-                  children: [
-                    Text(
-                      "คะแนน MEWs โดยรวม",
-                      style: GoogleFonts.inter(
-                        fontSize: 20,
-                      ),
+              ),
+              SizedBox(height: size.height * 0.01),
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.solidClock,
+                    color: Colors.black,
+                    size: size.width * 0.08,
+                  ),
+                  SizedBox(width: size.width * 0.02),
+                  Text(
+                    data[1].latestMonitor,
+                    style: GoogleFonts.inter(
+                      fontSize: size.width * 0.065,
+                      fontWeight: FontWeight.bold,
                     ),
-
-                    const SizedBox(width: 15,),
-
-                    Text(
-                      data[1].sumMEWs.toString(),
-                      style: GoogleFonts.inter(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold
-                      ),
-                    )
-                  ],
-                ),
-
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
+                  ),
+                ],
+              ),
+              SizedBox(height: size.height * 0.005),
+              Row(
+                children: [
+                  Text(
+                    "คะแนน MEWs โดยรวม",
+                    style: GoogleFonts.inter(
+                      fontSize: size.width * 0.052,
+                    ),
+                  ),
+                  SizedBox(width: size.width * 0.02),
+                  Text(
+                    data[1].sumMEWs.toString(),
+                    style: GoogleFonts.inter(
+                      fontSize: size.width * 0.08,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: size.height * 0.01),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        MewDetail(iconData: FontAwesomeIcons.heartPulse ,mewsValue: data[1].hr, unit: "BPM", mewsScore: "= 3",),
-                        MewDetail(iconData: FontAwesomeIcons.maskVentilator ,mewsValue: data[1].spO2, unit: "%", mewsScore: "= 3",),
-                        MewDetail(iconData: FontAwesomeIcons.droplet ,mewsValue: data[1].bloodPressure, unit: "mmHg", mewsScore: "= 1",),
+                        MewDetail(
+                          iconData: FontAwesomeIcons.heartPulse,
+                          mewsValue: data[1].hr,
+                          unit: "BPM",
+                          mewsScore: "= 3",
+                          size: size,
+                        ),
+                        MewDetail(
+                          iconData: FontAwesomeIcons.maskVentilator,
+                          mewsValue: data[1].spO2,
+                          unit: "%",
+                          mewsScore: "= 3",
+                          size: size,
+                        ),
+                        MewDetail(
+                          iconData: FontAwesomeIcons.droplet,
+                          mewsValue: data[1].bloodPressure,
+                          unit: "mmHg",
+                          mewsScore: "= 1",
+                          size: size,
+                        ),
                         Row(
                           children: [
-                            MewDetail(iconData: FontAwesomeIcons.temperatureThreeQuarters ,mewsValue: data[1].celsius, unit: "°C", mewsScore: "= 3",),
-                            // const SizedBox(width: 10,),
-                            IconButton(
-                              onPressed: () {
-                          
-                              },
-                              icon: const FaIcon(FontAwesomeIcons.rotate, size: 16,)
+                            MewDetail(
+                              iconData: FontAwesomeIcons.temperatureThreeQuarters,
+                              mewsValue: data[1].celsius,
+                              unit: "°C",
+                              mewsScore: "= 3",
+                              size: size,
                             ),
-                            Text("°F", style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold),)
+                            IconButton(
+                              onPressed: () {},
+                              icon: FaIcon(
+                                FontAwesomeIcons.rotate,
+                                size: size.width * 0.04,
+                              ),
+                            ),
+                            Text(
+                              "°F",
+                              style: GoogleFonts.inter(
+                                fontSize: size.width * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
-
                       ],
                     ),
-                    Column(
+                  ),
+                  Expanded(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        MewDetail(iconData: FontAwesomeIcons.lungs ,mewsValue: data[1].rr, unit: "BPM", mewsScore: "= 0",),
+                        MewDetail(
+                          iconData: FontAwesomeIcons.lungs,
+                          mewsValue: data[1].rr,
+                          unit: "BPM",
+                          mewsScore: "= 0",
+                          size: size,
+                        ),
                         Row(
                           children: [
-                            const FaIcon(FontAwesomeIcons.brain, color: Color.fromARGB(255, 84, 84, 84), size: 30,),
-                            const SizedBox(width: 10,),
+                            FaIcon(
+                              FontAwesomeIcons.brain,
+                              color: Color.fromARGB(255, 84, 84, 84),
+                              size: size.width * 0.06,
+                            ),
+                            SizedBox(width: size.width * 0.02),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10,),
+                              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
                               decoration: BoxDecoration(
                                 color: forthColor,
-                                borderRadius: BorderRadius.circular(10)
+                                borderRadius: BorderRadius.circular(size.width * 0.03),
                               ),
                               child: Text(
                                 data[1].consciousness.title,
                                 style: GoogleFonts.inter(
-                                  fontSize: 16,
+                                  fontSize: size.width * 0.04,
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 10,),
+                            SizedBox(width: size.width * 0.02),
                             Text(
                               "= 2",
                               style: GoogleFonts.inter(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold
+                                fontSize: size.width * 0.04,
+                                fontWeight: FontWeight.bold,
                               ),
-                            )
+                            ),
                           ],
                         ),
-                        MewDetail(iconData: FontAwesomeIcons.flask ,mewsValue: data[1].urine, unit: "mmHg", mewsScore: "= 0",),
+                        MewDetail(
+                          iconData: FontAwesomeIcons.flask,
+                          mewsValue: data[1].urine,
+                          unit: "mmHg",
+                          mewsScore: "= 0",
+                          size: size,
+                        ),
                       ],
-                    )
-                  ],
-                ),
-
-                const SizedBox(height: 10,),
-
-                // Row(
-                //   children: [
-                //     Text(
-                //       "ดูรายงานฉบับเต็ม",
-                //       style: GoogleFonts.inter(
-                //         fontSize: 20
-                //       ),
-                //     ),
-                //     GestureDetector(
-                //       onTap: (){},
-                //       child: Text(
-                //         "ที่นี่",
-                //         style: GoogleFonts.inter(
-                //           fontSize: 20,
-                //           color: Colors.red,
-                //           // fontWeight: FontWeight.bold,
-                //           decoration: TextDecoration.underline,
-                //           decorationColor: Colors.red,
-                //         ),
-                //       )
-                //     )
-                //   ],
-                // ),
-
-                // const SizedBox(height: 100,),
-
-                // Align(
-                //   alignment: Alignment.bottomRight,
-                //   child: Container(
-                //     margin: const EdgeInsets.all(10),
-                //     child: FilledButton(
-                //       onPressed: (){
-                //         Navigator.push(
-                //           context, 
-                //           MaterialPageRoute(builder: (context) => const FullReport())
-                //         );
-                //       }, 
-                //       style: FilledButton.styleFrom(
-                //         foregroundColor: Colors.black,
-                //         backgroundColor: const Color(0xFFFFDEAC),
-                //         padding: const EdgeInsets.all(20),
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(15)
-                //         )
-                //       ),
-                //       child: Text(
-                //         "อัพเดทคะแนน",
-                //         style: GoogleFonts.inter(
-                //           fontSize: 24,
-                //           fontWeight: FontWeight.bold
-                //         ),
-                //       )
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-          )
-        ] 
-      );
-    // );
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -258,45 +240,52 @@ class MewDetail extends StatelessWidget {
   final String unit;
   final String mewsScore;
   final IconData iconData;
+  final Size size;
 
   const MewDetail({
-    super.key,
+    Key? key,
     required this.unit,
     required this.mewsScore,
     required this.mewsValue,
     required this.iconData,
-  });
+    required this.size,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        FaIcon(iconData, color: const Color.fromARGB(255, 84, 84, 84), size: 30,),
-        const SizedBox(width: 10,),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10,),
-          decoration: BoxDecoration(
-            color: forthColor,
-            borderRadius: BorderRadius.circular(10)
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: size.width * 0.01),
+      child: Row(
+        children: [
+          FaIcon(
+            iconData,
+            color: Color.fromARGB(255, 84, 84, 84),
+            size: size.width * 0.08,
           ),
-          child: Text(
-            "$mewsValue $unit",
-            style: GoogleFonts.inter(
-              fontSize: 15,
+          SizedBox(width: size.width * 0.02),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+            decoration: BoxDecoration(
+              color: forthColor,
+              borderRadius: BorderRadius.circular(size.width * 0.03),
+            ),
+            child: Text(
+              "$mewsValue $unit",
+              style: GoogleFonts.inter(
+                fontSize: size.width * 0.04,
+              ),
             ),
           ),
-        ),
-
-        const SizedBox(width: 10,),
-        
-        Text(
-          mewsScore,
-          style: GoogleFonts.inter(
-            fontSize: 15,
-            fontWeight: FontWeight.bold
+          SizedBox(width: size.width * 0.02),
+          Text(
+            mewsScore,
+            style: GoogleFonts.inter(
+              fontSize: size.width * 0.04,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

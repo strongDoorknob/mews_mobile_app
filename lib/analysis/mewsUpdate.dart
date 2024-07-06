@@ -13,6 +13,8 @@ class MewsUpdatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final String name = '森下';
+    final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
 
     return Scaffold(
       body: Container(
@@ -21,72 +23,84 @@ class MewsUpdatePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                top: size.height * 0.07,
-                bottom: size.height * 0.02,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: FaIcon(
-                          FontAwesomeIcons.solidCircleUser,
-                          size: size.width * 0.1,
+                padding: EdgeInsets.only(
+                    top: size.height * 0.07, bottom: size.height * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          child: Container(
+                            width: size.width * 0.13,
+                            height: size.width * 0.13,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: const Color(0xffBA90CB),
+                            ),
+                            child: Center(
+                              child: Text(
+                                firstLetter,
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
-                          );
-                        },
-                      ),
-                      SizedBox(width: size.width * 0.02),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'ยินดีต้อนรับ,',
-                            style: GoogleFonts.inter(
-                              textStyle: TextStyle(
-                                fontSize: size.width * 0.06,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                        SizedBox(width: size.width * 0.03),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'ยินดีต้อนรับ,\n',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.06,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          Text(
-                            '<name>!!',
-                            style: GoogleFonts.inter(
-                              textStyle: TextStyle(
-                                fontSize: size.width * 0.05,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black,
+                              TextSpan(
+                                text: '$name!!',
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: size.width * 0.05,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  IconButton(
-                    icon: FaIcon(
-                      FontAwesomeIcons.cog,
-                      size: size.width * 0.08,
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SettingsPage()),
-                      );
-                    },
-                  ),
-                ],
+                    IconButton(
+                      icon: FaIcon(FontAwesomeIcons.cog),
+                      iconSize: size.width * 0.08,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
             SizedBox(height: size.height * 0.02),
             const Text(
               'ระบบคะแนนคะแนนแจ้งเตือนสัญญาณ\nภาวะวิกฤติ',

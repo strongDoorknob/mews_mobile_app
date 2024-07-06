@@ -119,11 +119,11 @@ class HomePage extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black
-                          .withOpacity(0.3), // Shadow color with opacity
-                      spreadRadius: 0, // How much the shadow spreads
-                      blurRadius: 4, // The blur radius of the shadow
+                          .withOpacity(0.3), 
+                      spreadRadius: 0, 
+                      blurRadius: 4, 
                       offset:
-                          Offset(0, 4), // Offset in x and y direction (x, y)
+                          Offset(0, 4), 
                     ),
                   ],
                 ),

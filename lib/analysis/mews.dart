@@ -177,7 +177,6 @@ class MewsScreen extends StatelessWidget {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  // redirect page
                                 },
                             ),
                             TextSpan(

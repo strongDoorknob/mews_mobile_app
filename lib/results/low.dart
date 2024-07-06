@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, sized_box_for_whitespace
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pulse/nursing/lowResult.dart';
-import 'package:pulse/patientinfo/indCRUD.dart';
 import 'package:pulse/patientinfo/mewsFullReport.dart';
 import 'package:pulse/screens/home.dart';
 import 'package:pulse/screens/setting.dart';
@@ -108,7 +107,7 @@ class LowPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: size.height * 0.02),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -144,15 +143,14 @@ class LowPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: size.height * 0.035),
+                  SizedBox(height: size.height * 0.02),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Flexible(
-                        child: AnimatedContainer(
-                          duration: Duration(seconds: 2),
-                          width: size.width * 0.25,
-                          height: size.width * 0.25,
+                        child: Container(
+                          width: size.width * 0.4, // Increase the width
+                          height: size.width * 0.4, // Increase the height
                           child: Image.asset(
                             'assets/images/sun-cloud.png',
                             fit: BoxFit.contain,
@@ -173,10 +171,9 @@ class LowPage extends StatelessWidget {
                       ),
                       SizedBox(width: size.width * 0.1),
                       Flexible(
-                        child: AnimatedContainer(
-                          duration: Duration(seconds: 2),
-                          width: size.width * 0.25,
-                          height: size.width * 0.25,
+                        child: Container(
+                          width: size.width * 0.2, // Increase the width
+                          height: size.width * 0.2, // Increase the height
                           child: Image.asset(
                             'assets/images/clouds.png',
                             fit: BoxFit.contain,
