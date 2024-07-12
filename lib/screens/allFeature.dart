@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pulse/analysis/mews.dart';
-import 'package:pulse/patientinfo/patientListPage.dart';
+import 'package:pulse/patientinfo/patientGeneralInfoListPage.dart';
 import 'package:pulse/screens/home.dart';
 import 'package:pulse/screens/setting.dart';
 
@@ -143,7 +143,7 @@ class AllFeaturesPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Patientlistpage()),
+                            builder: (context) => const PatientCRUDPage()),
                       );
                     },
                     child: const FeatureCard(

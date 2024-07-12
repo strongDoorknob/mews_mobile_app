@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pulse/intropage/firstpage.dart';
+import 'package:pulse/intropage/forthpage.dart';
+import 'package:pulse/intropage/secondpage.dart';
+import 'package:pulse/intropage/thirdpage.dart';
+import 'package:pulse/authenticate/intro.dart';
+import 'package:pulse/themes/color.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_slider/introduction_slider.dart';
-import 'package:pulse/intro/authenticate/intro.dart';
-import 'package:pulse/intro/intropage/firstpage.dart';
-import 'package:pulse/intro/intropage/forthpage.dart';
-import 'package:pulse/intro/intropage/secondpage.dart';
-import 'package:pulse/intro/intropage/thirdpage.dart';
-import 'package:pulse/themes/color.dart';
 
 class IntroSliderPage extends StatelessWidget {
   const IntroSliderPage({super.key});

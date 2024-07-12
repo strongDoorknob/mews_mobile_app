@@ -26,7 +26,7 @@ class _MainInfoState extends State<MainInfo> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final String name = '森下';
+    const String name = '森下';
     final String firstLetter = name.isNotEmpty ? name[0].toUpperCase() : '';
 
     return Scaffold(

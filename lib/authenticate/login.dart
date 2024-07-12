@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pulse/intro/authenticate/done.dart';
+import 'package:pulse/authenticate/done.dart';
 import 'package:pulse/themes/color.dart';
 
 class LoginPage extends StatefulWidget {
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                       "เข้าสู่ระบบ",
                       style: GoogleFonts.inter(
                         fontSize: 40,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
                       ),
                     )
                   ],
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                     FilledButton(
                       onPressed: (){
                         _formKey.currentState!.validate();
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => const DonePage())
                         );

@@ -1,17 +1,19 @@
+// ignore_for_file: duplicate_import
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pulse/intro/authenticate/done.dart';
+import 'package:pulse/authenticate/done.dart';
 import 'package:pulse/themes/color.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class RegisterStepperPage extends StatefulWidget {
+  const RegisterStepperPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterStepperPageState();
+  State<RegisterStepperPage> createState() => _RegisterStepperPageState();
 }
 
-class _RegisterStepperPageState extends State<RegisterPage> {
+class _RegisterStepperPageState extends State<RegisterStepperPage> {
   final _formKey = GlobalKey<FormState>();
   final _formKeyForMail = GlobalKey<FormState>();
 

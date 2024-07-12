@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pulse/intro/authenticate/register.dart';
 import 'package:pulse/themes/color.dart';
 import 'package:pulse/themes/components/mybutton.dart';
 
@@ -54,12 +53,7 @@ class _IntroAuthState extends State<IntroAuth> {
 
             const SizedBox(height: 40,),
 
-            MyButton(text: "ลงทะเบียนเลย", onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const RegisterPage())
-              );
-            }),
+            MyButton(text: "ลงทะเบียนเลย", onTap: (){}),
 
             Container(
               padding: const EdgeInsets.fromLTRB(0, 10, 105, 0),

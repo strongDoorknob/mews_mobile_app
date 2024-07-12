@@ -101,7 +101,7 @@ class _PatientMewsDetailState extends State<PatientMewsDetail> {
               Row(
                 children: [
                   Text(
-                    "คะแนน MEWs โดยรวม",
+                    "คะแนน MEWs โดยรวม:",
                     style: GoogleFonts.inter(
                       fontSize: size.width * 0.052,
                     ),
@@ -128,21 +128,21 @@ class _PatientMewsDetailState extends State<PatientMewsDetail> {
                           iconData: FontAwesomeIcons.heartPulse,
                           mewsValue: data[1].hr,
                           unit: "BPM",
-                          mewsScore: "= 3",
+                          mewsScore: "=3",
                           size: size,
                         ),
                         MewDetail(
                           iconData: FontAwesomeIcons.maskVentilator,
                           mewsValue: data[1].spO2,
                           unit: "%",
-                          mewsScore: "= 3",
+                          mewsScore: "=3",
                           size: size,
                         ),
                         MewDetail(
                           iconData: FontAwesomeIcons.droplet,
                           mewsValue: data[1].bloodPressure,
                           unit: "mmHg",
-                          mewsScore: "= 1",
+                          mewsScore: "=1",
                           size: size,
                         ),
                         Row(
@@ -151,7 +151,7 @@ class _PatientMewsDetailState extends State<PatientMewsDetail> {
                               iconData: FontAwesomeIcons.temperatureThreeQuarters,
                               mewsValue: data[1].celsius,
                               unit: "°C",
-                              mewsScore: "= 3",
+                              mewsScore: "=3",
                               size: size,
                             ),
                             IconButton(
@@ -181,7 +181,7 @@ class _PatientMewsDetailState extends State<PatientMewsDetail> {
                           iconData: FontAwesomeIcons.lungs,
                           mewsValue: data[1].rr,
                           unit: "BPM",
-                          mewsScore: "= 0",
+                          mewsScore: "=0",
                           size: size,
                         ),
                         Row(
@@ -243,13 +243,13 @@ class MewDetail extends StatelessWidget {
   final Size size;
 
   const MewDetail({
-    Key? key,
+    super.key,
     required this.unit,
     required this.mewsScore,
     required this.mewsValue,
     required this.iconData,
     required this.size,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

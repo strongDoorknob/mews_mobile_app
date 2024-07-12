@@ -1,5 +1,7 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
-import 'package:pulse/analysis/mewsUpdate.dart';
+import 'package:pulse/intropage/static.dart';
 import 'package:pulse/screens/home.dart';
 
 void main() {
